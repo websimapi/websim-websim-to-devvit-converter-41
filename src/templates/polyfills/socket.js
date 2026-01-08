@@ -233,8 +233,8 @@ export const websimSocketPolyfill = `
                 window.websimSocketInstance = { 
                     collection: (name) => new AdapterCollection(name),
                     // Defensive: Add common methods that might be expected
-                    initialize: () => console.log("[WebSim] Socket initialized (stub)"),
-                    connect: () => console.log("[WebSim] Socket connected (stub)"),
+                    initialize: () => { console.log("[WebSim] Socket initialized (stub)"); return Promise.resolve(); },
+                    connect: () => { console.log("[WebSim] Socket connected (stub)"); return Promise.resolve(); },
                 };
             }
             return window.websimSocketInstance;
@@ -248,7 +248,8 @@ export const websimSocketPolyfill = `
     if (!window.party) { 
         window.websimSocketInstance = { 
             collection: (name) => new AdapterCollection(name),
-            initialize: () => console.log("[WebSim] Party initialized (stub)"),
+            initialize: () => { console.log("[WebSim] Party initialized (stub)"); return Promise.resolve(); },
+            connect: () => { console.log("[WebSim] Party connected (stub)"); return Promise.resolve(); },
         };
         window.party = window.websimSocketInstance; 
     }
